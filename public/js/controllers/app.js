@@ -1,3 +1,4 @@
 angular.module('nodos-app', [
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'nodos-app.index'
 ]);

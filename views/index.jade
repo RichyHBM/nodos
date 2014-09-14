@@ -1,9 +1,14 @@
 extends layout
 
 block content
-  header
-    div(class="container")
-      div(class="row")
-        div(class="col-md-offset-2 col-md-5")
-          span(class="glyphicon glyphicon-tasks")
-          span Nodos
+  div(class="container" ng-controller="IndexCtrl")
+    div(class="row")
+      div(class="col-md-offset-1 col-md-10")
+        alert(type="warning" ng-show="errorMsg" close="errorMsg = ''") Some test {{errorMsg}}
+
+    div(class="row")
+      div(class="col-md-offset-1 col-md-10")
+        h2(class="clickable" ng-click="collapsable.sysInfo = !collapsable.sysInfo") System Information
+        hr
+        div(collapse="collapsable.sysInfo")
+          div(class="well well-lg") {{systemInfo}}
