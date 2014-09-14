@@ -1,19 +1,19 @@
 var express = require('express');
 var router = express.Router();
 
-var sysInfo = require('./../system_info/full-info')
+var wrapper = require('./../framework/wrapper');
 
 /* GET users listing. */
-router.get('/', function(req, res) {  ;
-  res.send(sysInfo.getRawInfo());
+router.get('/system-info', function(req, res) {  ;
+  res.send(wrapper.getSystemInfo());
 });
 
 router.get('/cpu', function(req, res) {
-  res.send(sysInfo.getRawInfo().cpus);
+  res.send(wrapper.getRawInfo().cpus);
 });
 
 router.get('/network', function(req, res) {
-  res.send(sysInfo.getRawInfo().network);
+  res.send(wrapper.getRawInfo().network);
 });
 
 module.exports = router;

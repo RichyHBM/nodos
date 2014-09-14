@@ -57,5 +57,14 @@ app.use(function(err, req, res, next) {
     });
 });
 
+//Update the db every minute
+var wrapper = require('./framework/wrapper');
+wrapper.update();
+
+setInterval(
+    function() {
+        wrapper.update();
+    },
+    60 * 1000);
 
 module.exports = app;
