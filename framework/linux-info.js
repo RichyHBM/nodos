@@ -6,7 +6,7 @@ linuxInfo.callCmd = function(cmd)
 {
   var exec = shell.exec(cmd, {silent: true});
   if(exec.code !== 0) {
-    throw new Error();
+    return 'N/A';
   }
   return exec.output;
 }
