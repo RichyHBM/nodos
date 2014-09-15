@@ -24,8 +24,4 @@ fullInfo.getRawInfo = function()
   return info;
 }
 
-fullInfo.getCPUInfo = function(){
-  return os.cpus();
-}
-
 module.exports = fullInfo;

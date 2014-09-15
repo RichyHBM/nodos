@@ -1,11 +1,11 @@
 var dataStore = require('./data-store');
-var fullInfo = require('./system-info');
+var nodeInfo = require('./node-info');
 
 var wrapper = {};
 
 wrapper.update = function() {
     //Dont store more than 3 days worth
-    var info = fullInfo.getRawInfo();
+    var info = nodeInfo.getRawInfo();
     info.timestamp = new Date().getTime();
     dataStore.db.insert( info );
     var maxTime = new Date().getTime() - (3 * 24 * 60 * 60 * 1000);
@@ -18,11 +18,11 @@ wrapper.update = function() {
 }
 
 wrapper.getSystemInfo = function() {
-  return fullInfo.getSystemInfo();
+  return nodeInfo.getSystemInfo();
 }
 
 wrapper.getRawInfo = function() {
-  return fullInfo.getRawInfo();
+  return nodeInfo.getRawInfo();
 }
 
 module.exports = wrapper;
