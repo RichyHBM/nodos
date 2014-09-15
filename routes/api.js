@@ -4,8 +4,8 @@ var router = express.Router();
 var wrapper = require('./../framework/wrapper');
 
 /* GET users listing. */
-router.get('/system-info', function(req, res) {  ;
-  res.send(wrapper.getSystemInfo());
+router.get('/raw-info', function(req, res) {  ;
+  res.send(wrapper.getRawInfo());
 });
 
 router.get('/cpu', function(req, res) {

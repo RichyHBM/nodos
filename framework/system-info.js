@@ -2,6 +2,8 @@ var os = require('os');
 
 var fullInfo = {};
 
+var isWindows = process.platform === 'win32';
+
 fullInfo.getRawInfo = function()
 {    
   var info = {};
@@ -24,26 +26,6 @@ fullInfo.getRawInfo = function()
 
 fullInfo.getCPUInfo = function(){
   return os.cpus();
-}
-
-fullInfo.bytesToMega = function(val){
-  return val / 1000 / 1000;
-}
-
-fullInfo.getSystemInfo = function()
-{    
-  var info = {};
-  
-  info.endianness = os.endianness() == "BE" ? "Big Endian" : "Little Endian";
-  info.hostname = os.hostname();
-  info.osname = os.type();
-  info.architecture = os.arch();
-  info.uptime = os.uptime();
-  info.totalmemory = fullInfo.bytesToMega( os.totalmem() );
-  info.freememory = fullInfo.bytesToMega( os.freemem() );
-  info.cpus = fullInfo.getCPUInfo();
-
-  return info;
 }
 
 module.exports = fullInfo;

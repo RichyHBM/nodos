@@ -11,4 +11,85 @@ block content
         h2(class="clickable" ng-click="collapsable.sysInfo = !collapsable.sysInfo") System Information
         hr
         div(collapse="collapsable.sysInfo")
-          div(class="well well-lg") {{systemInfo}}
+          div(class="well well-lg") 
+            
+            div(class="row")
+              div(class="col-sm-2 col-xs-5")
+                b Hostname
+              div(class="col-sm-5 col-xs-7") {{systemInfo.hostname}}
+
+              div(class="col-sm-2 col-xs-5")
+                b Uptime
+              div(class="col-sm-3 col-xs-7") {{systemInfo.uptimeFormat}}
+
+            div(class="row")
+              div(class="col-sm-2 col-xs-5")
+                b Total memory
+              div(class="col-sm-5 col-xs-7") {{systemInfo.totalmemoryFormat}}
+
+              div(class="col-sm-2 col-xs-5")
+                b Free memory
+              div(class="col-sm-3 col-xs-7") {{systemInfo.freememoryFormat}}
+
+            div(class="row")
+              div(class="col-sm-2 col-xs-5")
+                b OS Name
+              div(class="col-sm-5 col-xs-7") {{systemInfo.osname}}
+
+              div(class="col-sm-2 col-xs-5")
+                b Platform
+              div(class="col-sm-3 col-xs-7") {{systemInfo.platform}}
+
+            div(class="row")
+              div(class="col-sm-2 col-xs-5")
+                b Architecture
+              div(class="col-sm-5 col-xs-7") {{systemInfo.architecture}}
+
+              div(class="col-sm-2 col-xs-5")
+                b Endianness
+              div(class="col-sm-3 col-xs-7") {{systemInfo.endianness == 'LE' ? 'Little Endian' : 'Big Endian'}}
+
+            div(class="row")
+              div(class="col-sm-2 col-xs-5")
+                b Release
+              div(class="col-sm-5 col-xs-7") {{systemInfo.release}}
+
+    div(class="row")
+      div(class="col-md-offset-1 col-md-10")
+        h2(class="clickable" ng-click="collapsable.cpuInfo = !collapsable.cpuInfo") CPU
+        hr
+        div(collapse="collapsable.cpuInfo")
+          div(class="well well-lg")
+            div(class="row")
+              div(class="col-sm-2 col-xs-5")
+                b CPU model
+              div(class="col-sm-5 col-xs-7") {{systemInfo.cpus[0].model}}
+
+              div(class="col-sm-2 col-xs-5")
+                b CPU count
+              div(class="col-sm-3 col-xs-7") {{systemInfo.cpus.length}}
+
+            div(class="row")
+              div(class="col-sm-2 col-xs-5")
+                b CPU speed
+              div(class="col-sm-5 col-xs-7") {{systemInfo.cpuSpeed}}
+            
+    div(class="row")
+      div(class="col-md-offset-1 col-md-10")
+        h2(class="clickable" ng-click="collapsable.networkInfo = !collapsable.networkInfo") Network
+        hr
+        div(collapse="collapsable.networkInfo")
+          div(class="well well-lg")
+            div(ng-repeat="(name, interfaces) in systemInfo.network" ng-show="!interfaces[0].internal")
+              h3 {{name}}
+              hr
+              div(class="row" ng-repeat="interface in interfaces")
+                div(class="col-sm-2 col-xs-5")
+                  b IP
+                div(class="col-sm-5 col-xs-7") {{interface.address}}
+                div(class="col-sm-2 col-xs-5")
+                  b Type
+                div(class="col-sm-3 col-xs-7") {{interface.family}}
+
+
+            
