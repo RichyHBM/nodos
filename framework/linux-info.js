@@ -1,5 +1,7 @@
 var shell = require('shelljs');
 
+var EOL = require('os').EOL;
+
 var linuxInfo = {};
 
 linuxInfo.callCmd = function(cmd)
@@ -13,7 +15,7 @@ linuxInfo.callCmd = function(cmd)
 
 linuxInfo.processCount = function()
 {
-  return linuxInfo.callCmd("ps axc | wc -l");
+  return linuxInfo.callCmd("ps axc | wc -l").replace(EOL, "");
 }
 
 linuxInfo.processes = function()
@@ -45,65 +47,65 @@ linuxInfo.processes = function()
 
 linuxInfo.sessionCount = function()
 {
-  return linuxInfo.callCmd("who | wc -l");
+  return linuxInfo.callCmd("who | wc -l").replace(EOL, "");
 }
 
 linuxInfo.fileHandles = function()
 {
-  return linuxInfo.callCmd("cat /proc/sys/fs/file-nr | awk '{ print $1 }'");
+  return linuxInfo.callCmd("cat /proc/sys/fs/file-nr | awk '{ print $1 }'").replace(EOL, "");
 }
 
 linuxInfo.fileHandlesLimit = function()
 {
-  return linuxInfo.callCmd("cat /proc/sys/fs/file-nr | awk '{ print $3 }'");
+  return linuxInfo.callCmd("cat /proc/sys/fs/file-nr | awk '{ print $3 }'").replace(EOL, "");
 }
 
 linuxInfo.ramTotal = function()
 {
-    return linuxInfo.callCmd("cat /proc/meminfo | grep ^MemTotal: | awk '{ print $2 }'");
+    return linuxInfo.callCmd("cat /proc/meminfo | grep ^MemTotal: | awk '{ print $2 }'").replace(EOL, "");
 }
 
 linuxInfo.ramFree = function()
 {
-    return linuxInfo.callCmd("cat /proc/meminfo | grep ^MemFree: | awk '{ print $2 }'");
+    return linuxInfo.callCmd("cat /proc/meminfo | grep ^MemFree: | awk '{ print $2 }'").replace(EOL, "");
 }
 
 linuxInfo.ramCached = function()
 {
-    return linuxInfo.callCmd("cat /proc/meminfo | grep ^Cached: | awk '{ print $2 }'");
+    return linuxInfo.callCmd("cat /proc/meminfo | grep ^Cached: | awk '{ print $2 }'").replace(EOL, "");
 }
 
 linuxInfo.ramBuffers = function()
 {
-    return linuxInfo.callCmd("cat /proc/meminfo | grep ^Buffers: | awk '{ print $2 }'");
+    return linuxInfo.callCmd("cat /proc/meminfo | grep ^Buffers: | awk '{ print $2 }'").replace(EOL, "");
 }
 
 linuxInfo.swapTotal = function()
 {
-  return linuxInfo.callCmd("cat /proc/meminfo | grep ^SwapTotal: | awk '{ print $2 }'");
+  return linuxInfo.callCmd("cat /proc/meminfo | grep ^SwapTotal: | awk '{ print $2 }'").replace(EOL, "");
 }
 
 linuxInfo.swapFree = function()
 {
-  return linuxInfo.callCmd("cat /proc/meminfo | grep ^SwapFree: | awk '{ print $2 }'");
+  return linuxInfo.callCmd("cat /proc/meminfo | grep ^SwapFree: | awk '{ print $2 }'").replace(EOL, "");
 }
 
 linuxInfo.diskTotal = function()
 {
-  return linuxInfo.callCmd("df -P -B 1 | grep '^/' | awk '{ print $2 }' | sed -e :a -e '$!N;s/\n/+/;ta'");
+  return linuxInfo.callCmd("df -P -B 1 | grep '^/' | awk '{ print $2 }'").replace(EOL, "");
 }
 
 linuxInfo.diskUsage = function()
 {
-  return linuxInfo.callCmd("df -P -B 1 | grep '^/' | awk '{ print $3 }' | sed -e :a -e '$!N;s/\n/+/;ta'");
+  return linuxInfo.callCmd("df -P -B 1 | grep '^/' | awk '{ print $3 }'").replace(EOL, "");
 }
 
 linuxInfo.activeConnections = function()
 {
   if (shell.which("ss"))
-    return linuxInfo.callCmd("ss -tun | tail -n +2 | wc -l");
+    return linuxInfo.callCmd("ss -tun | tail -n +2 | wc -l").replace(EOL, "");
   else
-    return linuxInfo.callCmd("netstat -tun | tail -n +3 | wc -l");
+    return linuxInfo.callCmd("netstat -tun | tail -n +3 | wc -l").replace(EOL, "");
 }
 
 linuxInfo.getAll = function(){
