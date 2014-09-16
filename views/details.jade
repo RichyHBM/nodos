@@ -1,0 +1,120 @@
+extends layout
+
+block content
+  div(class="container" ng-controller="DetailsCtrl")
+    div(class="row")
+      div(class="col-md-offset-1 col-md-10")
+        alert(type="warning" ng-show="errorMsg" close="errorMsg = ''") Some test {{errorMsg}}
+
+    div(class="row")
+      div(class="col-md-offset-1 col-md-10")
+        h2(class="clickable" ng-click="collapsable.process = !collapsable.process") Processes
+        hr
+        div(collapse="collapsable.process")
+          div(class="well well-lg")
+            div(class="row")
+              div(class="col-sm-2 col-xs-5")
+                b Process count
+              div(class="col-sm-5 col-xs-7") {{detailInfo.processCount}}
+
+
+    div(class="row")
+      div(class="col-md-offset-1 col-md-10")
+        h2(class="clickable" ng-click="collapsable.system = !collapsable.system") System
+        hr
+        div(collapse="collapsable.system")
+          div(class="well well-lg")
+            div(class="row")
+              div(class="col-sm-2 col-xs-5")
+                b Session count
+              div(class="col-sm-5 col-xs-7") {{detailInfo.sessionCount}}
+
+
+    div(class="row")
+      div(class="col-md-offset-1 col-md-10")
+        h2(class="clickable" ng-click="collapsable.files = !collapsable.files") Files
+        hr
+        div(collapse="collapsable.files")
+          div(class="well well-lg")
+            div(class="row")
+              div(class="col-sm-2 col-xs-5")
+                b Current file handles
+              div(class="col-sm-5 col-xs-7") {{detailInfo.fileHandles}}
+
+              div(class="col-sm-2 col-xs-5")
+                b File hande limit
+              div(class="col-sm-3 col-xs-7") {{detailInfo.fileHandlesLimit}}
+
+
+    div(class="row")
+      div(class="col-md-offset-1 col-md-10")
+        h2(class="clickable" ng-click="collapsable.ram = !collapsable.ram") RAM
+        hr
+        div(collapse="collapsable.ram")
+          div(class="well well-lg")
+            div(class="row")
+              div(class="col-sm-2 col-xs-5")
+                b Total RAM
+              div(class="col-sm-5 col-xs-7") {{detailInfo.ramTotal}}
+
+              div(class="col-sm-2 col-xs-5")
+                b Free RAM
+              div(class="col-sm-3 col-xs-7") {{detailInfo.ramFree}}
+
+            div(class="row")
+              div(class="col-sm-2 col-xs-5")
+                b Cache RAM
+              div(class="col-sm-5 col-xs-7") {{detailInfo.ramCached}}
+
+              div(class="col-sm-2 col-xs-5")
+                b Buffered RAM
+              div(class="col-sm-3 col-xs-7") {{detailInfo.ramBuffers}}
+
+
+    div(class="row")
+      div(class="col-md-offset-1 col-md-10")
+        h2(class="clickable" ng-click="collapsable.swap = !collapsable.swap") Swap
+        hr
+        div(collapse="collapsable.swap")
+          div(class="well well-lg")
+            div(class="row")
+              div(class="col-sm-2 col-xs-5")
+                b Total swap
+              div(class="col-sm-5 col-xs-7") {{detailInfo.swapTotal}}
+
+              div(class="col-sm-2 col-xs-5")
+                b Free swap
+              div(class="col-sm-3 col-xs-7") {{detailInfo.swapFree}}
+
+
+    div(class="row")
+      div(class="col-md-offset-1 col-md-10")
+        h2(class="clickable" ng-click="collapsable.disk = !collapsable.disk") Storage
+        hr
+        div(collapse="collapsable.disk")
+          div(class="well well-lg")
+            div(class="row")
+              div(class="col-sm-2 col-xs-5")
+                b Total space
+              div(class="col-sm-5 col-xs-7") {{detailInfo.diskTotal}}
+
+              div(class="col-sm-2 col-xs-5")
+                b Space usage
+              div(class="col-sm-3 col-xs-7") {{detailInfo.diskUsage}}
+
+            div(class="row")
+              div(class="col-sm-2 col-xs-5")
+                b Space free
+              div(class="col-sm-5 col-xs-7") {{detailInfo.diskTotal - detailInfo.diskUsage}}
+
+
+    div(class="row")
+      div(class="col-md-offset-1 col-md-10")
+        h2(class="clickable" ng-click="collapsable.network = !collapsable.network") Network
+        hr
+        div(collapse="collapsable.network")
+          div(class="well well-lg")
+            div(class="row")
+              div(class="col-sm-2 col-xs-5")
+                b Active connections
+              div(class="col-sm-5 col-xs-7") {{detailInfo.activeConnections}}

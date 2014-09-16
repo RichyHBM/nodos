@@ -1,5 +1,6 @@
 angular.module('nodos-app', [
     'ui.bootstrap',
     'nvd3ChartDirectives',
-    'nodos-app.index'
+    'nodos-app.index',
+    'nodos-app.details'
 ]);

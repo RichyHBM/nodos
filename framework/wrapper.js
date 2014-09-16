@@ -1,5 +1,6 @@
 var dataStore = require('./data-store');
 var nodeInfo = require('./node-info');
+var linuxInfo = require('./linux-info');
 
 var wrapper = {};
 
@@ -23,6 +24,10 @@ wrapper.getSystemInfo = function() {
 
 wrapper.getRawInfo = function() {
   return nodeInfo.getRawInfo();
+}
+
+wrapper.getDetailInfo = function() {
+  return linuxInfo.getAll();
 }
 
 module.exports = wrapper;

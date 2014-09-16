@@ -13,12 +13,12 @@ linuxInfo.callCmd = function(cmd)
 
 linuxInfo.processCount = function()
 {
-  return callCmd("ps axc | wc -l");
+  return linuxInfo.callCmd("ps axc | wc -l");
 }
 
 linuxInfo.processes = function()
 {
-  var processStr = callCmd("ps axc -o uname:12,pcpu,rss,cmd --sort=-pcpu,-rss --noheaders --width 120");
+  var processStr = linuxInfo.callCmd("ps axc -o uname:12,pcpu,rss,cmd --sort=-pcpu,-rss --noheaders --width 120");
   var processArray = processStr.split(require('os').EOL);
   var processes = [];
   for(var i = 0; i < processArray.length; i++)
@@ -45,71 +45,86 @@ linuxInfo.processes = function()
 
 linuxInfo.sessionCount = function()
 {
-  return callCmd("who | wc -l");
+  return linuxInfo.callCmd("who | wc -l");
 }
 
 linuxInfo.fileHandles = function()
 {
-  return callCmd("cat /proc/sys/fs/file-nr | awk '{ print $1 }'");
+  return linuxInfo.callCmd("cat /proc/sys/fs/file-nr | awk '{ print $1 }'");
 }
 
 linuxInfo.fileHandlesLimit = function()
 {
-  return callCmd("cat /proc/sys/fs/file-nr | awk '{ print $3 }'");
+  return linuxInfo.callCmd("cat /proc/sys/fs/file-nr | awk '{ print $3 }'");
 }
 
 linuxInfo.ramTotal = function()
 {
-    return callCmd("cat /proc/meminfo | grep ^MemTotal: | awk '{ print $2 }'");
+    return linuxInfo.callCmd("cat /proc/meminfo | grep ^MemTotal: | awk '{ print $2 }'");
 }
 
 linuxInfo.ramFree = function()
 {
-    return callCmd("cat /proc/meminfo | grep ^MemFree: | awk '{ print $2 }'");
+    return linuxInfo.callCmd("cat /proc/meminfo | grep ^MemFree: | awk '{ print $2 }'");
 }
 
 linuxInfo.ramCached = function()
 {
-    return callCmd("cat /proc/meminfo | grep ^Cached: | awk '{ print $2 }'");
+    return linuxInfo.callCmd("cat /proc/meminfo | grep ^Cached: | awk '{ print $2 }'");
 }
 
 linuxInfo.ramBuffers = function()
 {
-    return callCmd("cat /proc/meminfo | grep ^Buffers: | awk '{ print $2 }'");
+    return linuxInfo.callCmd("cat /proc/meminfo | grep ^Buffers: | awk '{ print $2 }'");
 }
 
 linuxInfo.swapTotal = function()
 {
-  return callCmd("cat /proc/meminfo | grep ^SwapTotal: | awk '{ print $2 }'");
+  return linuxInfo.callCmd("cat /proc/meminfo | grep ^SwapTotal: | awk '{ print $2 }'");
 }
 
 linuxInfo.swapFree = function()
 {
-  return callCmd("cat /proc/meminfo | grep ^SwapFree: | awk '{ print $2 }'");
+  return linuxInfo.callCmd("cat /proc/meminfo | grep ^SwapFree: | awk '{ print $2 }'");
 }
 
-# Disk usage
 linuxInfo.diskTotal = function()
 {
-  return callCmd("df -P -B 1 | grep '^/' | awk '{ print $2 }' | sed -e :a -e '$!N;s/\n/+/;ta'");
+  return linuxInfo.callCmd("df -P -B 1 | grep '^/' | awk '{ print $2 }' | sed -e :a -e '$!N;s/\n/+/;ta'");
 }
 
 linuxInfo.diskUsage = function()
 {
-  return callCmd("df -P -B 1 | grep '^/' | awk '{ print $3 }' | sed -e :a -e '$!N;s/\n/+/;ta'");
-}
-
-linuxInfo.diskArray = function()
-{
-  return callCmd("df -P -B 1 | grep '^/' | awk '{ print $1" "$2" "$3";" }' | sed -e :a -e '$!N;s/\n/ /;ta' | awk '{ print $0 } END { if (!NR) print "N/A" }'");
+  return linuxInfo.callCmd("df -P -B 1 | grep '^/' | awk '{ print $3 }' | sed -e :a -e '$!N;s/\n/+/;ta'");
 }
 
 linuxInfo.activeConnections = function()
 {
-  if (shell.which("ss")))
-    return callCmd("ss -tun | tail -n +2 | wc -l");
+  if (shell.which("ss"))
+    return linuxInfo.callCmd("ss -tun | tail -n +2 | wc -l");
   else
-    return callCmd("netstat -tun | tail -n +3 | wc -l");
+    return linuxInfo.callCmd("netstat -tun | tail -n +3 | wc -l");
+}
+
+linuxInfo.getAll = function(){
+  var info = {};
+
+  info.processCount = linuxInfo.processCount();
+  info.processes = linuxInfo.processes();
+  info.sessionCount = linuxInfo.sessionCount();
+  info.fileHandles = linuxInfo.fileHandles();
+  info.fileHandlesLimit = linuxInfo.fileHandlesLimit();
+  info.ramTotal = linuxInfo.ramTotal();
+  info.ramFree = linuxInfo.ramFree();
+  info.ramCached = linuxInfo.ramCached();
+  info.ramBuffers = linuxInfo.ramBuffers();
+  info.swapTotal = linuxInfo.swapTotal();
+  info.swapFree = linuxInfo.swapFree();
+  info.diskTotal = linuxInfo.diskTotal();
+  info.diskUsage = linuxInfo.diskUsage();
+  info.activeConnections = linuxInfo.activeConnections();
+
+  return info;
 }
 
 module.exports = linuxInfo;
