@@ -114,16 +114,30 @@ linuxInfo.getAll = function(){
   info.processCount = linuxInfo.processCount();
   info.processes = linuxInfo.processes();
   info.sessionCount = linuxInfo.sessionCount();
+  
   info.fileHandles = linuxInfo.fileHandles();
   info.fileHandlesLimit = linuxInfo.fileHandlesLimit();
+
   info.ramTotal = linuxInfo.ramTotal();
   info.ramFree = linuxInfo.ramFree();
   info.ramCached = linuxInfo.ramCached();
   info.ramBuffers = linuxInfo.ramBuffers();
+
   info.swapTotal = linuxInfo.swapTotal();
   info.swapFree = linuxInfo.swapFree();
   info.diskTotal = linuxInfo.diskTotal();
   info.diskUsage = linuxInfo.diskUsage();
+
+  info.ramTotalMB = Math.round(info.ramTotal / 1000 / 1000);
+  info.ramFreeMB = Math.round(info.ramFree / 1000 / 1000);
+  info.ramCachedMB = Math.round(info.ramCached / 1000 / 1000);
+  info.ramBuffersMB = Math.round(info.ramBuffers / 1000 / 1000);
+
+  info.swapTotalMB = Math.round(info.swapTotal / 1000 / 1000);
+  info.swapFreeMB = Math.round(info.swapFree / 1000 / 1000);
+  info.diskTotalMB = Math.round(info.diskTotal / 1000 / 1000);
+  info.diskUsageMB = Math.round(info.diskUsage / 1000 / 1000);
+
   info.activeConnections = linuxInfo.activeConnections();
 
   return info;

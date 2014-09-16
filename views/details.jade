@@ -55,20 +55,20 @@ block content
             div(class="row")
               div(class="col-sm-2 col-xs-5")
                 b Total RAM
-              div(class="col-sm-5 col-xs-7") {{detailInfo.ramTotal}}
+              div(class="col-sm-5 col-xs-7") {{detailInfo.ramTotalMB}} MB
 
               div(class="col-sm-2 col-xs-5")
                 b Free RAM
-              div(class="col-sm-3 col-xs-7") {{detailInfo.ramFree}}
+              div(class="col-sm-3 col-xs-7") {{detailInfo.ramFreeMB}} MB
 
             div(class="row")
               div(class="col-sm-2 col-xs-5")
                 b Cache RAM
-              div(class="col-sm-5 col-xs-7") {{detailInfo.ramCached}}
+              div(class="col-sm-5 col-xs-7") {{detailInfo.ramCachedMB}} MB
 
               div(class="col-sm-2 col-xs-5")
                 b Buffered RAM
-              div(class="col-sm-3 col-xs-7") {{detailInfo.ramBuffers}}
+              div(class="col-sm-3 col-xs-7") {{detailInfo.ramBuffersMB}} MB
 
 
     div(class="row")
@@ -80,11 +80,11 @@ block content
             div(class="row")
               div(class="col-sm-2 col-xs-5")
                 b Total swap
-              div(class="col-sm-5 col-xs-7") {{detailInfo.swapTotal}}
+              div(class="col-sm-5 col-xs-7") {{detailInfo.swapTotalMB}} MB
 
               div(class="col-sm-2 col-xs-5")
                 b Free swap
-              div(class="col-sm-3 col-xs-7") {{detailInfo.swapFree}}
+              div(class="col-sm-3 col-xs-7") {{detailInfo.swapFreeMB}} MB
 
 
     div(class="row")
@@ -96,16 +96,16 @@ block content
             div(class="row")
               div(class="col-sm-2 col-xs-5")
                 b Total space
-              div(class="col-sm-5 col-xs-7") {{detailInfo.diskTotal}}
+              div(class="col-sm-5 col-xs-7") {{detailInfo.diskTotalMB}} MB
 
               div(class="col-sm-2 col-xs-5")
                 b Space usage
-              div(class="col-sm-3 col-xs-7") {{detailInfo.diskUsage}}
+              div(class="col-sm-3 col-xs-7") {{detailInfo.diskUsageMB}} MB
 
             div(class="row")
               div(class="col-sm-2 col-xs-5")
                 b Space free
-              div(class="col-sm-5 col-xs-7") {{detailInfo.diskTotal - detailInfo.diskUsage}}
+              div(class="col-sm-5 col-xs-7") {{detailInfo.diskTotalMB - detailInfo.diskUsageMB}} MB
 
 
     div(class="row")
