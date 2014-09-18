@@ -50,7 +50,7 @@ angular.module('nodos-app.details',[])
 
     $http.get('/api/ramTotal')
     .success(function(data, status) {
-      $scope.detailInfo.ramTotal = data;
+      $scope.detailInfo.ramTotal = Math.floor( parseInt(data) / 1000000);
     })
     .error(function(data, status) {
       $scope.errorMsg = data;
@@ -58,7 +58,7 @@ angular.module('nodos-app.details',[])
 
     $http.get('/api/ramFree')
     .success(function(data, status) {
-      $scope.detailInfo.ramFree = data;
+      $scope.detailInfo.ramFree = Math.floor( parseInt(data) / 1000000);
     })
     .error(function(data, status) {
       $scope.errorMsg = data;
@@ -66,7 +66,7 @@ angular.module('nodos-app.details',[])
 
     $http.get('/api/ramCached')
     .success(function(data, status) {
-      $scope.detailInfo.ramCached = data;
+      $scope.detailInfo.ramCached = Math.floor( parseInt(data) / 1000000);
     })
     .error(function(data, status) {
       $scope.errorMsg = data;
@@ -74,7 +74,7 @@ angular.module('nodos-app.details',[])
 
     $http.get('/api/ramBuffers')
     .success(function(data, status) {
-      $scope.detailInfo.ramBuffers = data;
+      $scope.detailInfo.ramBuffers = Math.floor( parseInt(data) / 1000000);
     })
     .error(function(data, status) {
       $scope.errorMsg = data;
@@ -82,7 +82,7 @@ angular.module('nodos-app.details',[])
 
     $http.get('/api/swapTotal')
     .success(function(data, status) {
-      $scope.detailInfo.swapTotal = data;
+      $scope.detailInfo.swapTotal = Math.floor( parseInt(data) / 1000000);
     })
     .error(function(data, status) {
       $scope.errorMsg = data;
@@ -90,7 +90,7 @@ angular.module('nodos-app.details',[])
 
     $http.get('/api/swapFree')
     .success(function(data, status) {
-      $scope.detailInfo.swapFree = data;
+      $scope.detailInfo.swapFree = Math.floor( parseInt(data) / 1000000);
     })
     .error(function(data, status) {
       $scope.errorMsg = data;
@@ -98,7 +98,7 @@ angular.module('nodos-app.details',[])
 
     $http.get('/api/diskTotal')
     .success(function(data, status) {
-      $scope.detailInfo.diskTotal = data;
+      $scope.detailInfo.diskTotal = Math.floor( parseInt(data) / 1000000);
     })
     .error(function(data, status) {
       $scope.errorMsg = data;
@@ -106,7 +106,7 @@ angular.module('nodos-app.details',[])
 
     $http.get('/api/diskUsage')
     .success(function(data, status) {
-      $scope.detailInfo.diskUsage = data;
+      $scope.detailInfo.diskUsage = Math.floor( parseInt(data) / 1000000);
     })
     .error(function(data, status) {
       $scope.errorMsg = data;
