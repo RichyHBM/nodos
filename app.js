@@ -58,12 +58,12 @@ app.use(function(err, req, res, next) {
 });
 
 //Update the db every minute
-var wrapper = require('./framework/wrapper');
-wrapper.update();
+var store = require('./framework/data-store');
+store.update();
 
 setInterval(
     function() {
-        wrapper.update();
+        store.update();
     },
     60 * 1000);
 
