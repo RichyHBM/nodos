@@ -16,6 +16,17 @@ block content
               div(class="col-sm-2 col-xs-5")
                 b Process count
               div(class="col-sm-5 col-xs-7") {{detailInfo.processCount}}
+            hr
+            div(class="table-responsive")
+              table(class="table table-striped")
+                tr
+                  th PID
+                  th User 
+                  th Process Name
+                tr(ng-repeat="process in processes")
+                  td {{process.pid}}
+                  td {{process.user}}
+                  td {{process.name}}
 
 
     div(class="row")

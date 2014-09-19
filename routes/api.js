@@ -26,6 +26,10 @@ router.get('/processCount', function(req, res) {
     res.send( linuxInfo.processCount() );
 });
 
+router.get('/processes', function(req, res) {
+    res.send( linuxInfo.processes() );
+});
+
 router.get('/sessionCount', function(req, res) {
     res.send( linuxInfo.sessionCount() );
 });

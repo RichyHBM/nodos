@@ -24,6 +24,14 @@ angular.module('nodos-app.details',[])
       $scope.errorMsg = data;
     });
 
+    $http.get('/api/processes')
+    .success(function(data, status) {
+      $scope.detailInfo.processes = data;
+    })
+    .error(function(data, status) {
+      $scope.errorMsg = data;
+    });
+
     $http.get('/api/sessionCount')
     .success(function(data, status) {
       $scope.detailInfo.sessionCount = data;
