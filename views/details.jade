@@ -23,7 +23,7 @@ block content
                   th PID
                   th User 
                   th Process Name
-                tr(ng-repeat="process in processes")
+                tr(ng-repeat="process in detailInfo.processes")
                   td {{process.pid}}
                   td {{process.user}}
                   td {{process.name}}
